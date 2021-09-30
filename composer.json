@@ -1,0 +1,52 @@
+{
+  "name": "dravencms/logging",
+  "type": "dravencms-package",
+  "description": "DravenCMS logging",
+  "keywords": [
+    "dravencms",
+    "logging"
+  ],
+  "license": [
+    "LGPL-3.0"
+  ],
+  "authors": [
+    {
+      "name": "Adam Schubert"
+    }
+  ],
+  "require": {
+    "contributte/monolog": "^0.5.0"
+  },
+  "autoload": {
+    "psr-0": {
+      "Dravencms\\": "src/"
+    }
+  },
+  "extra": {
+    "dravencms": {
+      "configuration": {
+        "extensions": {
+          "contributte.monolog": "Contributte\\Monolog\\DI\\MonologExtension"
+        },
+        "contributte.monolog": {
+          "holder": {
+            "enabled": "true"
+          },
+          "channel": {
+            "default": {
+              "handlers": [
+                "Monolog\\Handler\\RotatingFileHandler(%appDir%/../log/syslog.log, 30, Monolog\\Logger::WARNING)"
+              ],
+              "processors": [
+                "Monolog\\Processor\\WebProcessor()",
+                "Monolog\\Processor\\IntrospectionProcessor()",
+                "Monolog\\Processor\\MemoryPeakUsageProcessor()",
+                "Monolog\\Processor\\ProcessIdProcessor()"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
