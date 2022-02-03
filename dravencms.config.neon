@@ -16,3 +16,5 @@ contributte.monolog:
 				- Monolog\Processor\MemoryPeakUsageProcessor()
 				- Monolog\Processor\ProcessIdProcessor()
 
+	hook:
+		toTracy: false
